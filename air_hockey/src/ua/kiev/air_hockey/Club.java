@@ -6,10 +6,10 @@ public class Club extends BaseShape implements Strikeable {
 	private boolean computer;
 	private short score;
 
-	public Club(float x, float y, int radius, boolean computer) {
+	public Club(float x, float y, int radius, boolean onTable,boolean computer) {
 		super(x, y, radius);
 		this.computer = computer;
-		onTable = true;
+		this.onTable = onTable;
 		score = 0;
 	}
 
@@ -41,14 +41,14 @@ public class Club extends BaseShape implements Strikeable {
 		double distance = Math.sqrt(Math.pow((this.getX() - disk.getX()), 2)
 				+ Math.pow((this.getY() - disk.getY()), 2));
 
-		if (distance <= this.getRadius() + disk.getRadius()) {
+		if ((distance <= this.getRadius() + disk.getRadius()) && this.onTable) {
 			return true;
 		}
 
 		return false;
 	}
 
-	public void onStrike(Disk disk) {
+	public void strike(Disk disk) {
 
 		double alpha;
 

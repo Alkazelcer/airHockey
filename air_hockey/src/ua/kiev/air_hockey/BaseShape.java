@@ -5,15 +5,15 @@ public abstract class BaseShape {
 	private float x;
 	private float y;
 	private int radius;
-	private float dx;
-	private float dy;
+	private float dx = 3;
+	private float dy = 3;
 
 	public BaseShape(float x, float y, int radius) {
 		this.x = x;
 		this.y = y;
 		this.radius = radius;
 	}
-
+	
 	public float getX() {
 		return this.x;
 	}
@@ -48,5 +48,13 @@ public abstract class BaseShape {
 	
 	public void setDy(float dy) {
 		this.dy = dy;
+	}
+	
+	public void inverseDx() {
+		this.dx = -dx;
+	}
+	
+	public void inverseDy() {
+		this.dy = -dy;
 	}
 }
