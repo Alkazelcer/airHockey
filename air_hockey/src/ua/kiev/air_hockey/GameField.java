@@ -34,7 +34,7 @@ public class GameField implements Strikeable {
 		goal = false;
 		players = new Club[2];
 		players[0] = new Club(this.touch.getFirstPlayerCoord()[0], this.touch.getFirstPlayerCoord()[1], 
-				radius, this.touch.isOnTableFirst(),false);
+				radius, this.touch.getFirstOnTable(),false);
 		players[1] = new Club(-100, -100, 20, false, false);
 		//players[0] = new Club(touchArray[0][0], touchArray[0][1], radius, false);
 		//players[1] = new Club(touchArray[1][0], touchArray[0][1], radius, computer);
@@ -106,10 +106,10 @@ public class GameField implements Strikeable {
 
 	public boolean isStrike(Disk disk) {
 
-		if (((disk.getX() + disk.getRadius() > fieldWidth - fieldBorder) 
-				|| (disk.getX() - disk.getRadius() - fieldBorder < 0)
-				|| (disk.getY() + disk.getRadius() > fieldHeight - fieldBorder) 
-				|| (disk.getY() - disk.getRadius() - fieldBorder < 0)) && (noGoal(disk))) {
+		if (((disk.getX() + disk.getRadius() >= fieldWidth - fieldBorder) 
+				|| (disk.getX() - disk.getRadius() - fieldBorder <= 0)
+				|| (disk.getY() + disk.getRadius() >= fieldHeight - fieldBorder) 
+				|| (disk.getY() - disk.getRadius() - fieldBorder <= 0)) && !(noGoal(disk))) {
 			return true;
 		}
 
@@ -169,7 +169,7 @@ public class GameField implements Strikeable {
 		}
 	}
 	
-	private boolean goalCase() {
+	private boolean goalCase(Disk disk) {
 		
 		if ((disk.getX() < gateEndX) && (disk.getX() > gateStartX)) {
 			if ((disk.getY()  + disk.getRadius() < 0) || (disk.getY() - disk.getRadius() > fieldHeight)) {
@@ -183,9 +183,6 @@ public class GameField implements Strikeable {
 private boolean noGoal(Disk disk) {
 		
 		if ((disk.getX() < gateEndX) && (disk.getX() > gateStartX)) {
-			if ((disk.getY()  + disk.getRadius() < 0) || (disk.getY() - disk.getRadius() > fieldHeight)) {
-				goal();
-			}
 			return false;
 		}
 		return true;

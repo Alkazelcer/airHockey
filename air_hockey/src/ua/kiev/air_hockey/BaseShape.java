@@ -57,4 +57,9 @@ public abstract class BaseShape {
 	public void inverseDy() {
 		this.dy = -dy;
 	}
+	
+	public void setCoord(float[] coord) {
+		this.x = coord[0];
+		this.y = coord[1];
+	}
 }

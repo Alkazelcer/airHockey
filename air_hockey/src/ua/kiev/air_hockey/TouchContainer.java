@@ -3,11 +3,12 @@ package ua.kiev.air_hockey;
 public class TouchContainer {
 	private float[][] playersCoord;
 	private boolean[] playersOnTable;
-	public boolean newTouch;
+	private boolean[] newTouch;
 	
 	public TouchContainer() {
 		playersCoord = new float[2][2];
 		playersOnTable = new boolean[2];
+		newTouch = new boolean[2];
 		
 	}
 	
@@ -27,11 +28,11 @@ public class TouchContainer {
 		return playersCoord[1];
 	}
 	
-	public boolean isOnTableFirst() {
+	public boolean getFirstOnTable() {
 		return playersOnTable[0];
 	}
 	
-	public boolean isOnTableSecond() {
+	public boolean getSecondOnTable() {
 		return playersOnTable[1];
 	}
 	
@@ -41,5 +42,21 @@ public class TouchContainer {
 	
 	public void setSecondOnTable(boolean on) {
 		playersOnTable[1] = on;
+	}
+	
+	public void setFirstNewTouch(boolean on) {
+		this.newTouch[0] = on;
+	}
+	
+	public void setSecondNewTouch(boolean on) {
+		this.newTouch[1] = on;
+	}
+	
+	public boolean getFirstNewTouch() {
+		return newTouch[0];
+	}
+	
+	public boolean getSecondNewTouch() {
+		return newTouch[1];
 	}
 }
